@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+        {% load crispy_forms_tags staticfiles %}
+
+        {% block content %}
+        <div class="row">
+            <div class="col-md-5">
+                {% crispy intro_form %}
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-5">
+                    {% crispy body_form %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    {% crispy body_form %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    {% crispy body_form %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    {% crispy conclusion_form %}
+                </div>
+            </div>
+            <div class="col-md-7" id="summary-view">
+                    {% crispy summary_form %}
+            </div>
+
+        {% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+ jQuery(document).ready(function ($) {
+     $('input').each(function() {
+         $(this).popover({
+                     placement: 'right',
+                     content: 'Example, Instructions',
+                     trigger: 'focus'
+                 }
+         );
+     });
+ });
+    </script>
+
+{% endblock extra_js %}
+
+        {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap_2.3.2_forms.min.css' %}">
+            <style>
+
+        #summary-view {
+            position: fixed;
+            top: 120px;
+            right: 0;
+            display: block;
+        }
+
+        #summary-view label {
+            font-size: 24px;
+            margin-bottom: 9px;
+        }
+            </style>
+        {% endblock %}

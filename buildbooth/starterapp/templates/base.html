@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="">
+
+
+
+ <link rel="stylesheet/less" href="{% static 'bootstrap-3.0.0/less/bootstrap.less' %}">
+  <script type="text/javascript">
+    less = {
+      env: "development", // or "production"
+      async: false,       // load imports async
+      fileAsync: false,   // load imports async when in a page under
+      // a file protocol
+      poll: 1000,         // when in watch mode, time in ms between polls
+      functions: {},      // user functions, keyed by name
+      dumpLineNumbers: "comments", // or "mediaquery" or "all"
+      relativeUrls: false,// whether to adjust url's to be relative
+      // if false, url's are already relative to the
+      // entry less file
+      rootpath: ""// a path to add on to the start of every url
+      //resource
+    };
+  </script>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{% static 'bootstrap-3.0.0/assets/js/html5shiv.js' %}"></script>
+      <script src="{% static 'bootstrap-3.0.0/assets/js/respond.min.js' %}"></script>
+    <![endif]-->
+
+{% block extra_css %}{% endblock extra_css %}
+
+    {% block jquery %}<script src="{% static 'bootstrap-3.0.0/assets/js/jquery.js' %}"></script>{% endblock jquery %}
+    <script src="{% static 'bootstrap-3.0.0/assets/js/less.js' %}"></script>
+
+</head>
+
+<body>
+
+<nav>
+<div class="navbar">
+<div class="navbar-inner">
+<a class="brand" href="/"></a>
+<div class="container">
+<ul class="nav pull-right">
+</ul>
+
+</div>
+</div>
+</div>
+</nav>
+
+    <header>
+    <div class="container">
+        {% block intro %}{% endblock intro %}
+        <div class="row">
+            <div class="span7">
+                <!--div class="page-header"-->
+                    <h1>{% block title %}{% endblock title %}</h1>
+                <!--/div-->
+            </div>
+            <div class="span5">
+                <ul class="nav nav-tabs sub-menu pull-right">
+                    {% block sub_menu %}{% endblock sub_menu %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    </header>
+
+
+<article>
+<div class="container">
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}" data-alert="alert">
+    <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
+</div>
+{% endfor %}
+
+{% block content %}{% endblock %}
+
+</div>
+</article>
+<footer>
+<div class="container">
+
+</div>
+</footer>
+
+<script src="{% static 'bootstrap-3.0.0/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'bootstrap-3.0.0/assets/js/holder.js' %}"></script>
+
+{% block extra_js %}{% endblock extra_js %}
+</body>
+</html>
+
